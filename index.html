@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ANU Timetable Builder - V2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="./library/bootstrap.min.css">
+    <link rel="stylesheet" href="./library/main.css">
+    <script src="./library/jquery-3.1.1.min.js"></script>
+    <script src="./library/tether.min.js"></script>
+    <script src="./library/bootstrap.min.js"></script>
+    <script src="./library/angular.min.js"></script>
+    <script src="./library/main.js"></script>
+    <script src="./library/typeahead.bundle.min.js"></script>
+    <style>
+        body { padding-top: 5rem; }
+        button { cursor: pointer; }
+        th { text-align: center; }
+        .day-list { border-bottom: 1px solid #292b2c; }
+        .day-list .col { cursor: pointer; }
+        .day-list .col:hover { background: #292b2c; color: #fff; }
+        .bg-main { background-color: #292b2c !important; }
+        .table-condensed td, .table-condensed th { padding: .6em .75em .6em .75em; }
+        .timetable { padding: 10px 0 0 0; font-size: .75rem; overflow-y: hidden; overflow-x: auto; clear: both; margin-top: 10px; }
+        .timetable table { text-align: center; width: 98%; }
+        .timetable tr > th:nth-of-type(1) { width: 10%; }
+    </style>
+</head>
+<body ng-app="anutimetable" ng-controller="main">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-main fixed-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button"
+                data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">ANU Timetable V2</a>
+    </nav>
+
+    <div class="alert alert-info" role="alert" ng-class="'alert-danger'" ng-show="error_display" ng-bind="error_message">Loading...</div>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-7">
+                <input type="text" id="course-name" class="form-control" placeholder="Course code" autofocus>
+            </div>
+            <div class="col-sm-12 col-md-5">
+                <div class="btn-group">
+                    <button id="add-course" class="btn btn-default">Add</button>
+                    <button id="clear-courses" class="btn btn-default">Clear</button>
+                </div>
+                <button id="download" class="btn btn-info pull-right">Export</button>
+            </div>
+        </div>
+        
+        <!-- hidden for now -->
+        <div class="row day-list align-items-center" style="display: none;">
+            <div class="col text-center"
+                 ng-repeat="(i, day) in days"
+                 ng-class="{'bg-main text-white': current_day == i}"
+                 ng-click="$parent.current_day = i"
+                 ng-bind="day"></div>
+        </div>
+    </div>
+    <div class="container timetable">
+        <table class="table table-hover table-condensed table">
+            <tr class="bg-inverse text-white">
+                <th></th>
+                <th ng-repeat="(i, day) in days" ng-bind="day"></th>
+            </tr>
+            <tr ng-repeat="(i, time) in timeRange(8, 20)">
+                <th class="bg-inverse text-white text-center" ng-bind="time"></th>
+                <td class="">123</td>
+                <td class="">123</td>
+                <td class="">123</td>
+                <td class="">123</td>
+                <td class="">123</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
