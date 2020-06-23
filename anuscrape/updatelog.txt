@@ -6,3 +6,4 @@ Scraping failed at Sun 23 Feb 2020 10:40:18 AEDT
 New update found at Sun 23 Feb 2020 11:08:53 AEDT
 Scraping failed at Sun 23 Feb 2020 11:40:19 AEDT
 No changes on Sun 23 Feb 2020 11:43:01 AEDT
+New update found at Tue Jun 23 11:57:45 CST 2020
